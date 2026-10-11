@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebGIS PMR — Losse-en-Gelaisse</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Leaflet 1.9.4 — inlined */
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden}.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none}.leaflet-tile::selection{background:transparent}.leaflet-safari .leaflet-tile{image-rendering:crisp-edges}.leaflet-layer{width:100%;height:100%}.leaflet-container.leaflet-touch-zoom{-ms-touch-action:pan-x pan-y;touch-action:pan-x pan-y}.leaflet-container.leaflet-touch-drag{-ms-touch-action:pinch-zoom;touch-action:none;touch-action:pinch-zoom}.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{-ms-touch-action:none;touch-action:none}.leaflet-container{-webkit-tap-highlight-color:transparent}.leaflet-container a{-webkit-tap-highlight-color:rgba(51,181,229,.4)}.leaflet-tile{filter:inherit;visibility:hidden}.leaflet-tile-loaded{visibility:inherit}.leaflet-zoom-box{width:0;height:0;-moz-box-sizing:border-box;box-sizing:border-box;z-index:800}.leaflet-overlay-pane svg{-moz-user-select:none}.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}.leaflet-vml-shape{width:1px;height:1px}.lvml{behavior:url(#default#VML);display:inline-block;position:absolute}.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto}.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-fade-anim .leaflet-popup{opacity:0;-webkit-transition:opacity .2s linear;-moz-transition:opacity .2s linear;transition:opacity .2s linear}.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}.leaflet-zoom-animated{-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0}.leaflet-zoom-anim .leaflet-zoom-animated{will-change:transform}.leaflet-zoom-anim .leaflet-zoom-animated{-webkit-transition:-webkit-transform .25s cubic-bezier(0,0,.25,1);-moz-transition:-moz-transform .25s cubic-bezier(0,0,.25,1);transition:transform .25s cubic-bezier(0,0,.25,1)}.leaflet-pan-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-tile{-webkit-transition:none;-moz-transition:none;transition:none}.leaflet-zoom-anim .leaflet-zoom-animated.leaflet-zoom-hide{visibility:hidden}.leaflet-interactive{cursor:pointer}.leaflet-grab{cursor:-webkit-grab;cursor:-moz-grab;cursor:grab}.leaflet-crosshair,.leaflet-crosshair .leaflet-interactive{cursor:crosshair}.leaflet-popup-pane,.leaflet-control{cursor:auto}.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-grab .leaflet-interactive,.leaflet-dragging .leaflet-marker-draggable{cursor:move;cursor:-webkit-grabbing;cursor:-moz-grabbing;cursor:grabbing}.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-image-layer,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}.leaflet-marker-icon.leaflet-interactive,.leaflet-image-layer.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive,svg.leaflet-image-layer.leaflet-interactive path{pointer-events:visiblePainted;pointer-events:auto}.leaflet-container{background:#ddd;outline-offset:1px}.leaflet-container a.leaflet-active{outline:2px solid orange}.leaflet-zoom-box{border:2px dotted #38f;background:rgba(255,255,255,.5)}.leaflet-container{font-family:Helvetica Neue,Arial,Helvetica,sans-serif;font-size:.75rem;font-size:1rem;line-height:1.5}.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.65);border-radius:4px}.leaflet-bar a{background-color:#fff;border-bottom:1px solid #ccc;width:26px;height:26px;line-height:26px;display:block;text-align:center;text-decoration:none;color:black}.leaflet-bar a,.leaflet-control-layers-toggle{background-position:50% 50%;background-repeat:no-repeat;display:block}.leaflet-bar a:hover,.leaflet-bar a:focus{background-color:#f4f4f4}.leaflet-bar a:first-child{border-top-left-radius:4px;border-top-right-radius:4px}.leaflet-bar a:last-child{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:none}.leaflet-bar a.leaflet-disabled{cursor:default;background-color:#f4f4f4;color:#bbb}.leaflet-touch .leaflet-bar a{width:30px;height:30px;line-height:30px}.leaflet-touch .leaflet-bar a:first-child{border-top-left-radius:2px;border-top-right-radius:2px}.leaflet-touch .leaflet-bar a:last-child{border-bottom-left-radius:2px;border-bottom-right-radius:2px}.leaflet-control-zoom-in,.leaflet-control-zoom-out{font:bold 18px 'Lucida Console',Monaco,monospace;text-indent:1px}.leaflet-touch .leaflet-control-zoom-in{font-size:22px}.leaflet-touch .leaflet-control-zoom-out{font-size:20px}.leaflet-control-layers{box-shadow:0 1px 5px rgba(0,0,0,.4);background:#fff;border-radius:5px}.leaflet-control-layers-toggle{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAQAAAADQ4RFAAACf0lEQVR4AY1UM3gkARTd2a5LmShSp3OOfefdefinitly-not-base64==);width:36px;height:36px}.leaflet-retina .leaflet-control-layers-toggle{background-size:26px 26px}.leaflet-touch .leaflet-control-layers-toggle{width:44px;height:44px}.leaflet-control-layers .leaflet-control-layers-list,.leaflet-control-layers-expanded .leaflet-control-layers-toggle{display:none}.leaflet-control-layers-expanded .leaflet-control-layers-list{display:block;position:relative}.leaflet-control-layers-expanded{padding:6px 10px 6px 6px;color:#333;background:#fff}.leaflet-control-layers-scrollbar{overflow-y:scroll;overflow-x:hidden;padding-right:5px}.leaflet-control-layers-selector{margin-top:2px;position:relative;top:1px}.leaflet-control-layers label{display:block;font-size:.8125rem}.leaflet-control-layers-separator{height:0;border-top:1px solid #ddd;margin:5px -10px 5px -6px}.leaflet-default-icon-path{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAApCAYAAADAk4LOAAAFgUlEQVR4Aa1XA5BjWRTN:2O1DSwAAAABJRU5ErkJggg==)}.leaflet-container .leaflet-control-attribution{background:#fff;background:rgba(255,255,255,.8);margin:0}.leaflet-control-attribution,.leaflet-control-scale-line{padding:0 5px;color:#333;font-size:.625rem;white-space:nowrap}.leaflet-control-attribution a{text-decoration:none}.leaflet-control-attribution a:hover,.leaflet-control-attribution a:focus{text-decoration:underline}.leaflet-attribution-flag{display:inline!important;vertical-align:baseline!important;width:.6875em;height:.5em}.leaflet-left .leaflet-control-scale{margin-left:5px}.leaflet-bottom .leaflet-control-scale{margin-bottom:5px}.leaflet-control-scale-line{border:2px solid #777;border-top:none;line-height:1.1;padding:2px 5px 1px;font-size:.625rem;white-space:nowrap;overflow:hidden;-moz-box-sizing:border-box;box-sizing:border-box;background:#fff;background:rgba(255,255,255,.5)}.leaflet-control-scale-line:not(:first-child){border-top:2px solid #777;border-bottom:none;margin-top:-2px}.leaflet-control-scale-line:not(:first-child):not(:last-child){border-bottom:2px solid #777}.leaflet-touch .leaflet-control-attribution,.leaflet-touch .leaflet-control-layers,.leaflet-touch .leaflet-bar{box-shadow:none}.leaflet-touch .leaflet-control-layers,.leaflet-touch .leaflet-bar{border:2px solid rgba(0,0,0,.2);background-clip:padding-box}.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:12px}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;pointer-events:auto;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:white;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.4)}.leaflet-container a.leaflet-popup-close-button{position:absolute;top:0;right:0;border:none;text-align:center;width:24px;height:24px;font:16px/24px Tahoma,Verdana,sans-serif;color:#757575;text-decoration:none;background:transparent}.leaflet-container a.leaflet-popup-close-button:hover,.leaflet-container a.leaflet-popup-close-button:focus{color:#585858}.leaflet-popup-scrolled{overflow:auto}.leaflet-oldie .leaflet-popup-content-wrapper{-ms-zoom:1}.leaflet-oldie .leaflet-popup-tip{width:24px;margin:0 auto;-ms-filter:"progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";filter:progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)}.leaflet-oldie .leaflet-popup-tip-container{margin-top:-1px}.leaflet-oldie .leaflet-control-zoom,.leaflet-oldie .leaflet-control-layers,.leaflet-oldie .leaflet-popup-content-wrapper,.leaflet-oldie .leaflet-popup-tip{border:1px solid #999}.leaflet-div-icon{background:#fff;border:1px solid #666}.leaflet-tooltip{position:absolute;padding:6px;background-color:#fff;border:1px solid #fff;border-radius:3px;color:#222;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;user-select:none;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}.leaflet-tooltip.leaflet-interactive{cursor:pointer;pointer-events:auto}.leaflet-tooltip-top:before,.leaflet-tooltip-bottom:before,.leaflet-tooltip-left:before,.leaflet-tooltip-right:before{position:absolute;pointer-events:none;border:6px solid transparent;background:transparent;content:""}.leaflet-tooltip-bottom{margin-top:6px}.leaflet-tooltip-top{margin-top:-6px}.leaflet-tooltip-bottom:before,.leaflet-tooltip-top:before{left:50%;margin-left:-6px}.leaflet-tooltip-top:before{bottom:0;margin-bottom:-12px;border-top-color:#fff}.leaflet-tooltip-bottom:before{top:0;margin-top:-12px;margin-left:-6px;border-bottom-color:#fff}.leaflet-tooltip-left{margin-left:-6px}.leaflet-tooltip-right{margin-left:6px}.leaflet-tooltip-left:before,.leaflet-tooltip-right:before{top:50%;margin-top:-6px}.leaflet-tooltip-left:before{right:0;margin-right:-12px;border-left-color:#fff}.leaflet-tooltip-right:before{left:0;margin-left:-12px;border-right-color:#fff}.leaflet-accessible-pan-toggle{cursor:pointer;background-color:#fff;border:none;padding:5px;border-radius:5px}.leaflet-accessible-pan-enabled{background-color:lightgreen}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+/* ── TOKENS ─────────────────────────────── */
+:root {
+  --blue:    #1A6EE8;
+  --blue-dk: #1259C4;
+  --green:   #27AE60;
+  --orange:  #E87A1A;
+  --red:     #E8281A;
+  --grey-1:  #F4F6F9;
+  --grey-2:  #E8ECF1;
+  --grey-3:  #C5CDD8;
+  --grey-4:  #8A96A3;
+  --ink:     #1C2333;
+  --white:   #FFFFFF;
+  --sidebar: 320px;
+  --radius:  5px;
+}
+
+/* ── BASE ────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; color: var(--ink); background: var(--grey-1); }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+
+/* ── LAYOUT ──────────────────────────────── */
+#app { display: flex; height: 100vh; overflow: hidden; }
+
+/* ── MAP ─────────────────────────────────── */
+#map {
+  flex: 1;
+  position: relative;
+  z-index: 0;
+}
+/* Override Leaflet z-index so sidebar stays on top */
+.leaflet-pane { z-index: 1 !important; }
+.leaflet-top, .leaflet-bottom { z-index: 10 !important; }
+
+/* ── SIDEBAR ─────────────────────────────── */
+#sidebar {
+  width: var(--sidebar);
+  height: 100%;
+  background: var(--white);
+  border-right: 1px solid var(--grey-2);
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Logo strip */
+#logo {
+  padding: 16px 16px 14px;
+  border-bottom: 1px solid var(--grey-2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+#logo svg { flex-shrink: 0; }
+#logo .name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+#logo .territory {
+  font-size: 11px;
+  color: var(--grey-4);
+  margin-top: 1px;
+}
+#logo .badge {
+  margin-left: auto;
+  background: var(--grey-1);
+  border: 1px solid var(--grey-2);
+  color: var(--grey-4);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* Nav tabs — icons only, no ALL-CAPS labels */
+#nav {
+  display: flex;
+  border-bottom: 1px solid var(--grey-2);
+  flex-shrink: 0;
+}
+.nav-btn {
+  flex: 1;
+  padding: 11px 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: var(--grey-4);
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.nav-btn:hover { color: var(--blue); }
+.nav-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+.nav-btn svg { display: block; }
+
+/* Panels */
+.panel { display: none; flex-direction: column; flex: 1; overflow: hidden; }
+.panel.active { display: flex; }
+.panel-scroll { flex: 1; overflow-y: auto; padding: 14px 16px; }
+
+/* ── FORM ELEMENTS ───────────────────────── */
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 12px; font-weight: 500; color: var(--grey-4); }
+.field-row { position: relative; }
+.input {
+  width: 100%;
+  padding: 9px 12px 9px 36px;
+  border: 1.5px solid var(--grey-2);
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--white);
+  transition: border-color .15s;
+}
+.input:focus { outline: none; border-color: var(--blue); }
+.input::placeholder { color: var(--grey-3); }
+.input-icon {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.input-clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--grey-3);
+  padding: 2px;
+  display: none;
+  font-size: 14px;
+  line-height: 1;
+}
+.input-clear.visible { display: block; }
+.input-clear:hover { color: var(--ink); }
+
+/* Swap button between fields */
+.swap-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px auto;
+  width: 28px; height: 28px;
+  border: 1.5px solid var(--grey-2);
+  border-radius: 50%;
+  background: var(--white);
+  cursor: pointer;
+  color: var(--grey-4);
+  transition: border-color .15s, color .15s;
+}
+.swap-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+.btn {
+  width: 100%;
+  padding: 11px;
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+}
+.btn-primary { background: var(--blue); color: var(--white); }
+.btn-primary:hover { background: var(--blue-dk); }
+.btn-secondary {
+  background: var(--grey-1);
+  border: 1.5px solid var(--grey-2);
+  color: var(--ink);
+}
+.btn-secondary:hover { border-color: var(--grey-3); }
+
+/* ── PROFILS MOBILITÉ ────────────────────── */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 2px;
+}
+.profile-chip {
+  padding: 8px 10px;
+  border: 1.5px solid var(--grey-2);
+  border-radius: var(--radius);
+  background: var(--white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--grey-4);
+  transition: all .15s;
+}
+.profile-chip:hover { border-color: var(--blue); color: var(--ink); }
+.profile-chip.active { border-color: var(--blue); background: #EBF2FD; color: var(--blue); font-weight: 500; }
+.profile-chip input { position: absolute; opacity: 0; pointer-events: none; }
+
+/* ── ITINÉRAIRE RÉSULTAT ─────────────────── */
+#route-result { display: none; }
+.route-bar {
+  display: flex;
+  gap: 0;
+  margin: 14px 0 10px;
+  border: 1.5px solid var(--grey-2);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.route-stat {
+  flex: 1;
+  padding: 10px 8px;
+  text-align: center;
+  border-right: 1px solid var(--grey-2);
+}
+.route-stat:last-child { border-right: none; }
+.route-stat .val { font-size: 17px; font-weight: 600; color: var(--ink); }
+.route-stat .lbl { font-size: 10px; color: var(--grey-4); margin-top: 1px; }
+
+.steps-list { display: flex; flex-direction: column; }
+.step {
+  display: flex;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--grey-2);
+}
+.step:last-child { border-bottom: none; }
+.step-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.step-dot.warn { background: var(--orange); }
+.step-dot.danger { background: var(--red); }
+.step-body { flex: 1; }
+.step-desc { font-size: 12px; line-height: 1.45; }
+.step-meta { font-size: 11px; color: var(--grey-4); margin-top: 2px; }
+.step-alert {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.step-alert.warn { background: #FEF3C7; color: #92400E; }
+.step-alert.danger { background: #FEE2E2; color: #991B1B; }
+
+/* ── COUCHES ─────────────────────────────── */
+.section-head {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 16px 0 8px;
+}
+.section-head:first-child { margin-top: 0; }
+
+.layer-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--grey-2);
+}
+.layer-row:last-child { border-bottom: none; }
+.layer-swatch { width: 16px; height: 4px; border-radius: 2px; flex-shrink: 0; }
+.layer-swatch.dot { width: 10px; height: 10px; border-radius: 50%; }
+.layer-name { flex: 1; font-size: 12px; }
+
+/* Toggle switch */
+.toggle { position: relative; width: 32px; height: 17px; flex-shrink: 0; }
+.toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+.toggle-track {
+  position: absolute; inset: 0;
+  background: var(--grey-3);
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.toggle input:checked + .toggle-track { background: var(--blue); }
+.toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--white);
+  transition: left .2s;
+}
+.toggle input:checked + .toggle-track::after { left: 17px; }
+.toggle input:focus-visible + .toggle-track { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+/* Basemaps */
+.basemap-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.basemap-pill {
+  padding: 5px 11px;
+  border: 1.5px solid var(--grey-2);
+  border-radius: 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--grey-4);
+  background: var(--white);
+  cursor: pointer;
+  transition: all .15s;
+}
+.basemap-pill:hover { border-color: var(--blue); color: var(--ink); }
+.basemap-pill.active { border-color: var(--blue); background: #EBF2FD; color: var(--blue); font-weight: 500; }
+
+/* ── TRAVAUX ─────────────────────────────── */
+.date-row { display: flex; gap: 8px; }
+.date-row .field { flex: 1; }
+.date-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1.5px solid var(--grey-2);
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--ink);
+  background: var(--white);
+}
+.date-input:focus { outline: none; border-color: var(--blue); }
+
+.chantier-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--grey-2);
+}
+.chantier-item:last-child { border-bottom: none; }
+.chantier-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+.chantier-body { flex: 1; }
+.chantier-name { font-size: 12px; font-weight: 500; }
+.chantier-dates { font-size: 11px; color: var(--grey-4); margin-top: 2px; }
+
+/* ── ISOCHRONE ───────────────────────────── */
+.arret-select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--grey-2);
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--white);
+}
+.arret-select:focus { outline: none; border-color: var(--blue); }
+
+.kpi-row { display: flex; gap: 6px; margin: 10px 0; }
+.kpi-box {
+  flex: 1;
+  padding: 10px 8px;
+  border: 1.5px solid var(--grey-2);
+  border-radius: var(--radius);
+  text-align: center;
+}
+.kpi-box .n { font-size: 20px; font-weight: 600; color: var(--ink); }
+.kpi-box .u { font-size: 10px; color: var(--grey-4); }
+.kpi-box.ok .n { color: var(--green); }
+.kpi-box.warn .n { color: var(--orange); }
+.kpi-box.bad .n { color: var(--red); }
+
+/* Legend strip */
+.legend {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px 0 0;
+}
+.leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--grey-4); }
+.leg-line { width: 18px; height: 3px; border-radius: 2px; }
+.leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── MAP POPUP ───────────────────────────── */
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius) !important;
+  box-shadow: 0 4px 20px rgba(28,35,51,.15) !important;
+  border: 1px solid var(--grey-2);
+  padding: 0 !important;
+}
+.leaflet-popup-content {
+  margin: 0 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  color: var(--ink) !important;
+  width: 220px !important;
+}
+.leaflet-popup-tip { background: var(--white) !important; }
+.popup-inner { padding: 13px 14px; }
+.popup-title { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+.popup-row { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; border-bottom: 1px solid var(--grey-2); }
+.popup-row:last-of-type { border-bottom: none; }
+.popup-val { font-weight: 500; }
+.popup-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge-ok { background: #D1FAE5; color: #065F46; }
+.badge-warn { background: #FEF3C7; color: #92400E; }
+.badge-bad { background: #FEE2E2; color: #991B1B; }
+
+/* ── MOBILE ──────────────────────────────── */
+#sidebar-toggle {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 16px;
+  z-index: 100;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--blue);
+  border: none;
+  cursor: pointer;
+  color: var(--white);
+  box-shadow: 0 3px 14px rgba(26,110,232,.4);
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 680px) {
+  #sidebar { position: fixed; left: 0; top: 0; bottom: 0; transform: translateX(-100%); transition: transform .25s ease; z-index: 50; }
+  #sidebar.open { transform: translateX(0); }
+  #sidebar-toggle { display: flex; }
+  #map { width: 100%; }
+}
+
+/* ── TOAST ───────────────────────────────── */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: var(--ink);
+  color: var(--white);
+  padding: 9px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  z-index: 500;
+  transition: transform .25s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+#toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── LOADER ──────────────────────────────── */
+#loader {
+  display: none;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  background: var(--white);
+  border: 1px solid var(--grey-2);
+  border-radius: var(--radius);
+  padding: 12px 18px;
+  font-size: 13px;
+  color: var(--grey-4);
+  z-index: 400;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+}
+#loader.show { display: flex; }
+.spin {
+  width: 15px; height: 15px;
+  border: 2px solid var(--grey-2);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin .65s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ── CARTE ─────────────────────── -->
+  <div id="map" role="region" aria-label="Carte d'accessibilité PMR de Losse-en-Gelaisse"></div>
+
+  <!-- ── SIDEBAR ───────────────────── -->
+  <aside id="sidebar" aria-label="Panneau de navigation accessibilité">
+
+    <!-- Logo -->
+    <div id="logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <rect width="28" height="28" rx="7" fill="#1A6EE8"/>
+        <path d="M9 19 Q14 9 19 19" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <circle cx="14" cy="10" r="2" fill="white"/>
+      </svg>
+      <div>
+        <div class="name">WebGIS PMR</div>
+        <div class="territory">Losse-en-Gelaisse</div>
+      </div>
+      <span class="badge">CNIG</span>
+    </div>
+
+    <!-- Nav -->
+    <nav id="nav" role="tablist">
+      <button class="nav-btn active" role="tab" aria-selected="true" aria-controls="panel-route" id="tab-route" data-panel="route">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="17.5" r="2.5"/><circle cx="18.5" cy="6.5" r="2.5"/><path d="M5.5 15V10a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v5"/></svg>
+        Itinéraire
+      </button>
+      <button class="nav-btn" role="tab" aria-selected="false" aria-controls="panel-couches" id="tab-couches" data-panel="couches">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l9-3 9 3-9 3z"/><path d="M3 12l9-3 9 3-9 3z" opacity=".6"/><path d="M3 18l9-3 9 3-9 3z" opacity=".3"/></svg>
+        Couches
+      </button>
+      <button class="nav-btn" role="tab" aria-selected="false" aria-controls="panel-travaux" id="tab-travaux" data-panel="travaux">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        Travaux
+      </button>
+      <button class="nav-btn" role="tab" aria-selected="false" aria-controls="panel-iso" id="tab-iso" data-panel="iso">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7" opacity=".5"/><circle cx="12" cy="12" r="11" opacity=".2"/></svg>
+        Isochrone
+      </button>
+    </nav>
+
+    <!-- ── Panel : Itinéraire ────────── -->
+    <div id="panel-route" class="panel active" role="tabpanel" aria-labelledby="tab-route">
+      <div class="panel-scroll">
+
+        <!-- Profil -->
+        <div class="field" style="margin-bottom:12px;">
+          <label>Profil de mobilité</label>
+          <div class="profile-grid" role="group" aria-label="Choisir un profil de mobilité">
+            <label class="profile-chip active" for="p-fre">
+              <input type="radio" id="p-fre" name="profil" value="fre" checked>
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 9v4l3 3M7 12h2.5"/></svg>
+              Fauteuil élec.
+            </label>
+            <label class="profile-chip" for="p-frm">
+              <input type="radio" id="p-frm" name="profil" value="frm">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 9v4l2.5 3M8 12h2.5l1 3.5 2.5 2"/></svg>
+              Fauteuil man.
+            </label>
+            <label class="profile-chip" for="p-pieaton">
+              <input type="radio" id="p-pieaton" name="profil" value="pieaton">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 9l-2 6 2 1 2-1M10 13l-2 5M14 13l2 5"/></svg>
+              Piéton PMR
+            </label>
+            <label class="profile-chip" for="p-canne">
+              <input type="radio" id="p-canne" name="profil" value="canne">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 9l-1 6M11 15l-2 6M11 13l4 4"/></svg>
+              Canne / béquille
+            </label>
+          </div>
+        </div>
+
+        <!-- Champs O/D -->
+        <div class="field">
+          <label for="inp-depart">Départ</label>
+          <div class="field-row">
+            <svg class="input-icon" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="var(--green)" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="2" fill="var(--green)" stroke="none"/></svg>
+            <input type="text" id="inp-depart" class="input" placeholder="Adresse de départ…" autocomplete="street-address" aria-describedby="hint-clic">
+            <button class="input-clear" id="clear-depart" aria-label="Effacer le départ">×</button>
+          </div>
+        </div>
+
+        <button class="swap-btn" id="btn-swap" aria-label="Inverser départ et arrivée">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 16V4m0 0L4 7m3-3l3 3M17 8v12m0 0l3-3m-3 3l-3-3"/></svg>
+        </button>
+
+        <div class="field" style="margin-bottom:12px;">
+          <label for="inp-arrivee">Arrivée</label>
+          <div class="field-row">
+            <svg class="input-icon" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="var(--red)" stroke-width="2.2" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="var(--red)" stroke="none"/></svg>
+            <input type="text" id="inp-arrivee" class="input" placeholder="Adresse d'arrivée…" autocomplete="street-address">
+            <button class="input-clear" id="clear-arrivee" aria-label="Effacer l'arrivée">×</button>
+          </div>
+          <span id="hint-clic" style="font-size:11px;color:var(--grey-4);">Ou cliquez directement sur la carte</span>
+        </div>
+
+        <button class="btn btn-primary" id="btn-route" style="margin-bottom:6px;">Calculer l'itinéraire</button>
+        <button class="btn btn-secondary" id="btn-reset" style="display:none;">Réinitialiser</button>
+
+        <!-- Résultat -->
+        <div id="route-result" aria-live="polite">
+          <div class="route-bar">
+            <div class="route-stat"><div class="val" id="stat-dist">—</div><div class="lbl">Distance</div></div>
+            <div class="route-stat"><div class="val" id="stat-time">—</div><div class="lbl">Durée</div></div>
+            <div class="route-stat"><div class="val" id="stat-alerts" style="color:var(--orange);">—</div><div class="lbl">Alertes</div></div>
+          </div>
+          <div class="steps-list" id="steps-list"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Panel : Couches ───────────── -->
+    <div id="panel-couches" class="panel" role="tabpanel" aria-labelledby="tab-couches">
+      <div class="panel-scroll">
+
+        <p class="section-head">Fond de carte</p>
+        <div class="basemap-row" role="group" aria-label="Sélection fond de carte">
+          <button class="basemap-pill active" data-bm="osm">Carte</button>
+          <button class="basemap-pill" data-bm="ortho">Orthophoto</button>
+          <button class="basemap-pill" data-bm="plan">Plan IGN</button>
+        </div>
+
+        <p class="section-head">Tronçons</p>
+        <div role="group" aria-label="Visibilité des tronçons">
+          <div class="layer-row">
+            <div class="layer-swatch" style="background:var(--green);"></div>
+            <span class="layer-name" id="lbl-ok">Accessibles</span>
+            <label class="toggle" aria-labelledby="lbl-ok"><input type="checkbox" checked id="tog-ok"><span class="toggle-track"></span></label>
+          </div>
+          <div class="layer-row">
+            <div class="layer-swatch" style="background:var(--orange);border-style:dashed;border-color:var(--orange);border-width:1px;background:none;height:3px;"></div>
+            <span class="layer-name" id="lbl-degrad">Dégradés</span>
+            <label class="toggle" aria-labelledby="lbl-degrad"><input type="checkbox" checked id="tog-degrad"><span class="toggle-track"></span></label>
+          </div>
+          <div class="layer-row">
+            <div class="layer-swatch" style="background:var(--red);"></div>
+            <span class="layer-name" id="lbl-ko">Inaccessibles</span>
+            <label class="toggle" aria-labelledby="lbl-ko"><input type="checkbox" checked id="tog-ko"><span class="toggle-track"></span></label>
+          </div>
+        </div>
+
+        <p class="section-head">Points d'intérêt</p>
+        <div role="group" aria-label="Visibilité des points d'intérêt">
+          <div class="layer-row">
+            <div class="layer-swatch dot" style="background:var(--blue);"></div>
+            <span class="layer-name" id="lbl-arrets">Arrêts prioritaires</span>
+            <label class="toggle" aria-labelledby="lbl-arrets"><input type="checkbox" checked id="tog-arrets"><span class="toggle-track"></span></label>
+          </div>
+          <div class="layer-row">
+            <div class="layer-swatch dot" style="background:var(--orange);"></div>
+            <span class="layer-name" id="lbl-obs">Obstacles</span>
+            <label class="toggle" aria-labelledby="lbl-obs"><input type="checkbox" checked id="tog-obs"><span class="toggle-track"></span></label>
+          </div>
+          <div class="layer-row">
+            <div class="layer-swatch dot" style="background:#7C3AED;"></div>
+            <span class="layer-name" id="lbl-stat">Stationnements PMR</span>
+            <label class="toggle" aria-labelledby="lbl-stat"><input type="checkbox" id="tog-stat"><span class="toggle-track"></span></label>
+          </div>
+        </div>
+
+        <p class="section-head" style="margin-top:20px;">Légende</p>
+        <div class="legend">
+          <div class="leg-item"><div class="leg-line" style="background:var(--green);"></div>Accessible</div>
+          <div class="leg-item"><div class="leg-line" style="background:var(--orange);border-top:2px dashed var(--orange);height:0;"></div>Dégradé</div>
+          <div class="leg-item"><div class="leg-line" style="background:var(--red);"></div>Inaccessible</div>
+          <div class="leg-item"><div class="leg-dot" style="background:var(--blue);"></div>Arrêt</div>
+          <div class="leg-item"><div class="leg-dot" style="background:var(--orange);"></div>Obstacle</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Panel : Travaux ───────────── -->
+    <div id="panel-travaux" class="panel" role="tabpanel" aria-labelledby="tab-travaux">
+      <div class="panel-scroll">
+
+        <p class="section-head">Période</p>
+        <div class="date-row" style="margin-bottom:12px;">
+          <div class="field">
+            <label for="dt-debut">Début</label>
+            <input type="date" id="dt-debut" class="date-input" value="2026-09-01" aria-label="Date de début">
+          </div>
+          <div class="field">
+            <label for="dt-fin">Fin</label>
+            <input type="date" id="dt-fin" class="date-input" value="2026-12-31" aria-label="Date de fin">
+          </div>
+        </div>
+        <button class="btn btn-primary" id="btn-filter-travaux" style="margin-bottom:16px;">Filtrer les chantiers</button>
+
+        <p class="section-head">Chantiers actifs</p>
+        <div id="chantier-list" aria-live="polite"></div>
+
+        <p class="section-head" style="margin-top:16px;">Légende statuts</p>
+        <div class="legend" style="flex-direction:column;gap:6px;">
+          <div class="leg-item"><div class="leg-dot" style="background:#E87A1A;"></div>En cours</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#E8281A;"></div>Bloqué — tronçon fermé</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#8A96A3;"></div>Planifié</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#27AE60;"></div>Terminé</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Panel : Isochrone ─────────── -->
+    <div id="panel-iso" class="panel" role="tabpanel" aria-labelledby="tab-iso">
+      <div class="panel-scroll">
+
+        <p class="section-head">Arrêt prioritaire</p>
+        <select id="arret-sel" class="arret-select" aria-label="Sélectionner un arrêt" style="margin-bottom:12px;">
+          <option value="">— Sélectionner un arrêt —</option>
+          <option value="ARR_001" data-lat="49.181" data-lng="-0.360">Hôtel de Ville</option>
+          <option value="ARR_002" data-lat="49.185" data-lng="-0.355">Médiathèque</option>
+          <option value="ARR_003" data-lat="49.178" data-lng="-0.370">Gare routière</option>
+          <option value="ARR_004" data-lat="49.183" data-lng="-0.348">Lycée Camille Claudel</option>
+        </select>
+
+        <div style="margin-bottom:12px;">
+          <div class="layer-row" style="border:1.5px solid var(--grey-2);border-radius:var(--radius);padding:8px 10px;">
+            <div>
+              <div style="font-size:12px;font-weight:500;">Durée</div>
+              <div style="font-size:11px;color:var(--grey-4);">Fauteuil élec. — 4 km/h</div>
+            </div>
+            <div style="margin-left:auto;font-size:20px;font-weight:600;color:var(--blue);">15 <span style="font-size:13px;font-weight:400;color:var(--grey-4);">min</span></div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="btn-iso" style="margin-bottom:16px;">Générer l'isochrone</button>
+
+        <p class="section-head">Indicateurs du bassin</p>
+        <div class="kpi-row">
+          <div class="kpi-box ok"><div class="n">68</div><div class="u">% conformes</div></div>
+          <div class="kpi-box warn"><div class="n">14</div><div class="u">obstacles</div></div>
+          <div class="kpi-box bad"><div class="n">3</div><div class="u">bloqués</div></div>
+        </div>
+        <div style="font-size:11px;color:var(--grey-4);margin-top:2px;">Réseau utile FRE dans le bassin : <strong>2,3 km</strong></div>
+
+      </div>
+    </div>
+
+  </aside><!-- /sidebar -->
+
+</div><!-- /app -->
+
+<!-- Mobile toggle -->
+<button id="sidebar-toggle" aria-label="Afficher le panneau" aria-expanded="false" aria-controls="sidebar">
+  <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+</button>
+
+<div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<div id="loader" role="status" aria-live="polite"><div class="spin" aria-hidden="true"></div><span id="loader-msg">Calcul en cours…</span></div>
+
+<script>
+// ── TILE LAYERS ─────────────────────────────────────────────────────────
+const TILES = {
+  osm:   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}),
+  ortho: L.tileLayer('https://wxs.ign.fr/essentiels/geoportail/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ORTHOIMAGERY.ORTHOPHOTOS&STYLE=normal&FORMAT=image/jpeg&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}',{maxZoom:20,attribution:'© IGN'}),
+  plan:  L.tileLayer('https://wxs.ign.fr/essentiels/geoportail/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&FORMAT=image/png&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}',{maxZoom:19,attribution:'© IGN'})
+};
+
+const map = L.map('map',{
+  center:[49.181,-0.362],
+  zoom:15,
+  layers:[TILES.osm],
+  zoomControl:false
+});
+L.control.zoom({position:'bottomright'}).addTo(map);
+L.control.scale({imperial:false,position:'bottomleft'}).addTo(map);
+
+// ── MOCK GEODATA ────────────────────────────────────────────────────────
+const DATA = {
+  troncons: [
+    { coords:[[49.182,-0.365],[49.182,-0.360],[49.183,-0.355]], statut:'ok', largeur:1.8, pente:1.2, devers:0.8, revetement:'Béton lissé' },
+    { coords:[[49.180,-0.362],[49.183,-0.362]], statut:'ok', largeur:2.1, pente:0.5, devers:0.3, revetement:'Asphalte' },
+    { coords:[[49.185,-0.370],[49.183,-0.366]], statut:'ko', largeur:0.7, pente:8.2, devers:3.1, revetement:'Pavés anciens' },
+    { coords:[[49.181,-0.358],[49.180,-0.354]], statut:'ko', largeur:0.9, pente:6.5, devers:2.5, revetement:'Terre' },
+    { coords:[[49.179,-0.368],[49.179,-0.363]], statut:'degrade', largeur:1.2, pente:4.8, devers:1.9, revetement:'Asphalte dégradé' },
+    { coords:[[49.184,-0.350],[49.182,-0.347]], statut:'degrade', largeur:1.1, pente:3.2, devers:2.1, revetement:'Béton fissuré' },
+  ],
+  obstacles: [
+    { ll:[49.182,-0.363], type:'Poteau', h:10, franchissable:false },
+    { ll:[49.184,-0.368], type:'Marche isolée', h:8, franchissable:true },
+    { ll:[49.180,-0.356], type:'Bateau dégradé', h:2, franchissable:true }
+  ],
+  arrets: [
+    { ll:[49.181,-0.360], nom:'Hôtel de Ville', prioritaire:true },
+    { ll:[49.185,-0.355], nom:'Médiathèque', prioritaire:true },
+    { ll:[49.178,-0.370], nom:'Gare routière', prioritaire:true }
+  ],
+  stationnements: [
+    { ll:[49.183,-0.361] },
+    { ll:[49.179,-0.367] }
+  ]
+};
+
+const COLORS = { ok:'#27AE60', degrade:'#E87A1A', ko:'#E8281A' };
+const DASH   = { ok:null, degrade:'8 5', ko:null };
+const WIDTH  = (largeur) => largeur >= 1.8 ? 5 : largeur >= 1.2 ? 4 : 3;
+
+// ── LAYER GROUPS ────────────────────────────────────────────────────────
+const LG = {
+  troncons_ok:     L.layerGroup(),
+  troncons_degrade: L.layerGroup(),
+  troncons_ko:     L.layerGroup(),
+  obstacles:       L.layerGroup(),
+  arrets:          L.layerGroup(),
+  stationnements:  L.layerGroup(),
+  route:           L.layerGroup(),
+  isochrone:       L.layerGroup(),
+  travaux:         L.layerGroup()
+};
+Object.values(LG).forEach(lg => lg.addTo(map));
+
+// ── DRAW TRONCONS ────────────────────────────────────────────────────────
+DATA.troncons.forEach(t => {
+  const opts = {
+    color: COLORS[t.statut],
+    weight: WIDTH(t.largeur),
+    opacity: .85
+  };
+  if(t.statut==='degrade') opts.dashArray = '8 5';
+  const line = L.polyline(t.coords, opts);
+  line.bindPopup(() => {
+    const badge = t.statut==='ok'
+      ? '<span class="popup-badge badge-ok">✓ Accessible FRE</span>'
+      : t.statut==='degrade'
+      ? '<span class="popup-badge badge-warn">⚠ Dégradé — vérifier</span>'
+      : '<span class="popup-badge badge-bad">✗ Inaccessible FRE</span>';
+    return `<div class="popup-inner">
+      <div class="popup-title">Tronçon de cheminement</div>
+      <div class="popup-row"><span>Largeur utile</span><span class="popup-val">${t.largeur} m</span></div>
+      <div class="popup-row"><span>Pente longitudinale</span><span class="popup-val">${t.pente} %</span></div>
+      <div class="popup-row"><span>Dévers</span><span class="popup-val">${t.devers} %</span></div>
+      <div class="popup-row"><span>Revêtement</span><span class="popup-val">${t.revetement}</span></div>
+      ${badge}
+    </div>`;
+  },{maxWidth:240});
+  line.on('mouseover', function(){ this.setStyle({opacity:1, weight: WIDTH(t.largeur)+1}); });
+  line.on('mouseout',  function(){ this.setStyle({opacity:.85, weight: WIDTH(t.largeur)}); });
+  LG[`troncons_${t.statut==='degrade'?'degrade':t.statut}`].addLayer(line);
+});
+
+// ── OBSTACLES ────────────────────────────────────────────────────────────
+const obsIcon = L.divIcon({
+  html:`<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" fill="#E87A1A" stroke="white" stroke-width="2"/><path d="M11 7v5M11 14.5v1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>`,
+  className:'', iconSize:[22,22], iconAnchor:[11,11]
+});
+DATA.obstacles.forEach(o => {
+  const m = L.marker(o.ll, {icon:obsIcon, alt:`Obstacle : ${o.type}`});
+  m.bindPopup(`<div class="popup-inner">
+    <div class="popup-title">Obstacle</div>
+    <div class="popup-row"><span>Type</span><span class="popup-val">${o.type}</span></div>
+    <div class="popup-row"><span>Hauteur</span><span class="popup-val">${o.h} cm</span></div>
+    <span class="popup-badge ${o.franchissable?'badge-warn':'badge-bad'}">${o.franchissable?'Franchissable avec aide':'Non franchissable'}</span>
+  </div>`,{maxWidth:220});
+  LG.obstacles.addLayer(m);
+});
+
+// ── ARRÊTS ───────────────────────────────────────────────────────────────
+const arretIcon = L.divIcon({
+  html:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1A6EE8" stroke="white" stroke-width="2"/><path d="M8 16V9a4 4 0 1 1 8 0v7" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M8 14h8" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>`,
+  className:'', iconSize:[24,24], iconAnchor:[12,12]
+});
+DATA.arrets.forEach(a => {
+  const m = L.marker(a.ll, {icon:arretIcon, alt:`Arrêt : ${a.nom}`});
+  m.bindPopup(`<div class="popup-inner">
+    <div class="popup-title">${a.nom}</div>
+    <div class="popup-row"><span>Arrêt prioritaire LOM</span><span class="popup-val">Oui</span></div>
+    <span class="popup-badge badge-ok">Zone 200 m CNIG</span>
+  </div>`,{maxWidth:220});
+  LG.arrets.addLayer(m);
+});
+
+// ── STATIONNEMENTS ───────────────────────────────────────────────────────
+const statIcon = L.divIcon({
+  html:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1" y="1" width="18" height="18" rx="4" fill="#7C3AED" stroke="white" stroke-width="1.5"/><text x="10" y="14" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="Inter">P</text></svg>`,
+  className:'', iconSize:[20,20], iconAnchor:[10,10]
+});
+DATA.stationnements.forEach(s => {
+  LG.stationnements.addLayer(L.marker(s.ll, {icon:statIcon, alt:'Stationnement PMR'}));
+  LG.stationnements.removeFrom(map); // off par défaut
+});
+
+// ── LAYER TOGGLES ────────────────────────────────────────────────────────
+const TOGGLE_MAP = {
+  'tog-ok':     LG.troncons_ok,
+  'tog-degrad': LG.troncons_degrade,
+  'tog-ko':     LG.troncons_ko,
+  'tog-arrets': LG.arrets,
+  'tog-obs':    LG.obstacles,
+  'tog-stat':   LG.stationnements
+};
+Object.entries(TOGGLE_MAP).forEach(([id, lg]) => {
+  document.getElementById(id).addEventListener('change', function() {
+    this.checked ? lg.addTo(map) : map.removeLayer(lg);
+    this.setAttribute('aria-checked', this.checked);
+  });
+});
+
+// ── BASEMAPS ─────────────────────────────────────────────────────────────
+let activeBasemap = TILES.osm;
+document.querySelectorAll('[data-bm]').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('[data-bm]').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    map.removeLayer(activeBasemap);
+    activeBasemap = TILES[this.dataset.bm];
+    activeBasemap.addTo(map);
+    activeBasemap.bringToBack();
+    toast('Fond de carte : ' + this.textContent);
+  });
+});
+
+// ── NAV TABS ─────────────────────────────────────────────────────────────
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    this.classList.add('active');
+    this.setAttribute('aria-selected','true');
+    document.getElementById('panel-' + this.dataset.panel).classList.add('active');
+  });
+});
+
+// ── ITINÉRAIRE ───────────────────────────────────────────────────────────
+let markers = [];
+let clickStep = 0;
+const inpDep = document.getElementById('inp-depart');
+const inpArr = document.getElementById('inp-arrivee');
+
+inpDep.addEventListener('input', () => document.getElementById('clear-depart').classList.toggle('visible', !!inpDep.value));
+inpArr.addEventListener('input', () => document.getElementById('clear-arrivee').classList.toggle('visible', !!inpArr.value));
+document.getElementById('clear-depart').addEventListener('click', () => { inpDep.value=''; inpDep.dispatchEvent(new Event('input')); resetMarkers(); });
+document.getElementById('clear-arrivee').addEventListener('click', () => { inpArr.value=''; inpArr.dispatchEvent(new Event('input')); });
+
+document.getElementById('btn-swap').addEventListener('click', () => {
+  const tmp = inpDep.value;
+  inpDep.value = inpArr.value;
+  inpArr.value = tmp;
+  [inpDep,inpArr].forEach(i => i.dispatchEvent(new Event('input')));
+});
+
+map.on('click', e => {
+  if (clickStep === 0) {
+    inpDep.value = `${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`;
+    inpDep.dispatchEvent(new Event('input'));
+    addMapMarker(e.latlng, 'dep');
+    clickStep = 1;
+    toast('Départ placé — cliquez pour l\'arrivée');
+  } else if (clickStep === 1) {
+    inpArr.value = `${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`;
+    inpArr.dispatchEvent(new Event('input'));
+    addMapMarker(e.latlng, 'arr');
+    clickStep = 2;
+    toast('Arrivée placée — calculez l\'itinéraire');
+  }
+});
+
+function addMapMarker(latlng, type) {
+  const color = type === 'dep' ? '#27AE60' : '#E8281A';
+  const label = type === 'dep' ? 'A' : 'B';
+  const icon = L.divIcon({
+    html:`<svg width="28" height="36" viewBox="0 0 28 36" fill="none"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.94 14 22 14 22S28 23.94 28 14C28 6.27 21.73 0 14 0z" fill="${color}"/><circle cx="14" cy="14" r="7" fill="white"/><text x="14" y="18" text-anchor="middle" fill="${color}" font-size="9" font-weight="700" font-family="Inter">${label}</text></svg>`,
+    className:'', iconSize:[28,36], iconAnchor:[14,36]
+  });
+  const m = L.marker(latlng, {icon, alt:`Point ${label}`}).addTo(map);
+  markers.push(m);
+}
+
+document.getElementById('btn-route').addEventListener('click', () => {
+  if (!inpDep.value || !inpArr.value) { toast('Saisissez départ et arrivée'); return; }
+  showLoader('Calcul pgRouting…');
+  setTimeout(() => {
+    hideLoader();
+    const steps = [
+      { desc:'Continuer sur la Rue de la Liberté', dist:120, alerte:null, level:'ok' },
+      { desc:'Descente — Impasse du Moulin', dist:85, alerte:'Pente 6,2 % — attention FRE', level:'warn' },
+      { desc:'Traversée sécurisée — Avenue du Général de Gaulle', dist:200, alerte:null, level:'ok' },
+      { desc:'Passage étroit (0,95 m) — Rue Carnot', dist:60, alerte:'Largeur réduite', level:'warn' },
+      { desc:'Arrivée — destination', dist:150, alerte:null, level:'ok' }
+    ];
+    const dist = steps.reduce((s,t)=>s+t.dist,0);
+    const time = Math.round(dist/1000/4*60);
+    const nAlerts = steps.filter(s=>s.alerte).length;
+
+    document.getElementById('stat-dist').textContent = (dist/1000).toFixed(2)+' km';
+    document.getElementById('stat-time').textContent = time+' min';
+    document.getElementById('stat-alerts').textContent = nAlerts;
+
+    document.getElementById('steps-list').innerHTML = steps.map((s,i) => `
+      <div class="step">
+        <div class="step-dot ${s.level==='warn'?'warn':''}" aria-hidden="true"></div>
+        <div class="step-body">
+          <div class="step-desc">${s.desc}</div>
+          <div class="step-meta">${s.dist} m</div>
+          ${s.alerte ? `<span class="step-alert warn" role="note">${s.alerte}</span>` : ''}
+        </div>
+      </div>`).join('');
+
+    document.getElementById('route-result').style.display = 'block';
+    document.getElementById('btn-reset').style.display = 'block';
+
+    // Tracer la route mock
+    LG.route.clearLayers();
+    if (markers.length >= 2) {
+      const lls = markers.map(m => m.getLatLng());
+      L.polyline(lls, {color:var_blue(), weight:5, opacity:.9, dashArray:null}).addTo(LG.route);
+    }
+    toast(`Itinéraire calculé — ${nAlerts} alerte(s)`);
+  }, 1100);
+});
+
+document.getElementById('btn-reset').addEventListener('click', resetRoute);
+
+function resetRoute() {
+  resetMarkers();
+  LG.route.clearLayers();
+  inpDep.value=''; inpArr.value='';
+  [inpDep,inpArr].forEach(i => i.dispatchEvent(new Event('input')));
+  document.getElementById('route-result').style.display='none';
+  document.getElementById('btn-reset').style.display='none';
+  clickStep=0;
+}
+function resetMarkers() { markers.forEach(m=>map.removeLayer(m)); markers=[]; clickStep=0; }
+function var_blue() { return getComputedStyle(document.documentElement).getPropertyValue('--blue').trim() || '#1A6EE8'; }
+
+// ── TRAVAUX ──────────────────────────────────────────────────────────────
+const CHANTIERS = [
+  { id:'C1', nom:'Réfection trottoir — Rue de la Paix', statut:'BLOQUE',   debut:'2026-09-15', fin:'2026-11-30', color:'#E8281A', ll1:[49.181,-0.358], ll2:[49.181,-0.352] },
+  { id:'C2', nom:'Bateau PMR — Avenue Foch',            statut:'EN_COURS', debut:'2026-09-20', fin:'2026-10-10', color:'#E87A1A', ll1:[49.183,-0.365], ll2:[49.183,-0.362] },
+  { id:'C3', nom:'Réseaux souterrains — Rue Carnot',    statut:'PLANIFIE', debut:'2026-11-01', fin:'2026-12-20', color:'#8A96A3', ll1:[49.180,-0.370], ll2:[49.179,-0.366] }
+];
+
+function renderChantiers(list) {
+  const el = document.getElementById('chantier-list');
+  if (!list.length) { el.innerHTML='<p style="font-size:12px;color:var(--grey-4);">Aucun chantier sur la période.</p>'; return; }
+  el.innerHTML = list.map(c => `
+    <div class="chantier-item">
+      <div class="chantier-dot" style="background:${c.color};" aria-hidden="true"></div>
+      <div class="chantier-body">
+        <div class="chantier-name">${c.nom}</div>
+        <div class="chantier-dates">${c.debut} → ${c.fin}</div>
+      </div>
+    </div>`).join('');
+}
+
+function drawTravaux(list) {
+  LG.travaux.clearLayers();
+  list.forEach(c => {
+    L.polyline([c.ll1, c.ll2], {
+      color: c.color, weight:6, opacity:.8, dashArray: c.statut==='BLOQUE'?null:'6 4'
+    }).bindPopup(`<div class="popup-inner">
+      <div class="popup-title">${c.nom}</div>
+      <div class="popup-row"><span>Statut</span><span class="popup-val">${c.statut}</span></div>
+      <div class="popup-row"><span>Début</span><span class="popup-val">${c.debut}</span></div>
+      <div class="popup-row"><span>Fin</span><span class="popup-val">${c.fin}</span></div>
+    </div>`,{maxWidth:240}).addTo(LG.travaux);
+  });
+}
+
+renderChantiers(CHANTIERS);
+drawTravaux(CHANTIERS);
+
+document.getElementById('btn-filter-travaux').addEventListener('click', () => {
+  const d = new Date(document.getElementById('dt-debut').value);
+  const f = new Date(document.getElementById('dt-fin').value);
+  const filtered = CHANTIERS.filter(c => new Date(c.fin) >= d && new Date(c.debut) <= f);
+  renderChantiers(filtered);
+  drawTravaux(filtered);
+  toast(`${filtered.length} chantier(s) sur la période`);
+});
+
+// ── ISOCHRONE ─────────────────────────────────────────────────────────────
+document.getElementById('btn-iso').addEventListener('click', () => {
+  const sel = document.getElementById('arret-sel');
+  const opt = sel.options[sel.selectedIndex];
+  if (!opt.value) { toast('Sélectionnez un arrêt'); return; }
+  const lat = +opt.dataset.lat, lng = +opt.dataset.lng;
+  showLoader('Calcul isochrone…');
+  setTimeout(() => {
+    hideLoader();
+    LG.isochrone.clearLayers();
+    // Polygone mock : ellipse irrégulière autour de l'arrêt
+    const pts = Array.from({length:72}, (_,i) => {
+      const a = i/72*2*Math.PI;
+      const r = 0.005 * (0.75 + 0.25 * Math.sin(a*3)) * (0.8 + 0.2*Math.random());
+      return [lat + r*Math.sin(a), lng + r*0.7*Math.cos(a)];
+    });
+    L.polygon(pts, {color:'#1A6EE8', fillColor:'#1A6EE8', fillOpacity:.1, weight:2, dashArray:'6 3'}).addTo(LG.isochrone);
+    map.setView([lat,lng], 15);
+    toast('Isochrone 15 min FRE — ' + opt.text);
+  }, 900);
+});
+
+// ── MOBILE ───────────────────────────────────────────────────────────────
+const togBtn = document.getElementById('sidebar-toggle');
+const sidebar = document.getElementById('sidebar');
+togBtn.addEventListener('click', () => {
+  const open = sidebar.classList.toggle('open');
+  togBtn.setAttribute('aria-expanded', open);
+  togBtn.querySelector('svg').style.transform = open ? 'scaleX(-1)' : '';
+});
+
+// ── HELPERS ──────────────────────────────────────────────────────────────
+let toastT;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => el.classList.remove('show'), 2800);
+}
+function showLoader(msg) {
+  document.getElementById('loader-msg').textContent = msg;
+  document.getElementById('loader').classList.add('show');
+}
+function hideLoader() { document.getElementById('loader').classList.remove('show'); }
+</script>
+</body>
+</html>
