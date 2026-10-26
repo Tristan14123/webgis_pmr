@@ -1,6 +1,7 @@
 # WebGIS PMR — Documentation fonctionnelle
 
-Oct 11, 2026 · @tristan
+ceci est une v1 du Oct 11, 2026 · @tristan
+La v2 est sur webgis_pmr
 
 Application WebGIS de planification de déplacements accessibles pour l'agglomération fictive **Losse-en-Gelaisse**, conforme au standard CNIG Accessibilité (schéma AOM/LOM).
 
